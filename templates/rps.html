@@ -86,7 +86,9 @@
             <!-- 플레이어 선택 -->
             <div class="col-md-6 border-end">
                 <h3 class="custom-text fw-bold">
-                    You{{ ": " if data.playerChoice }}{{ data.playerChoice if data.playerChoice}}
+                    You{{ ": " if data.playerChoice and
+                    data.playerChoice != "Reset" }}{{ data.playerChoice if data.playerChoice and
+                    data.playerChoice != "Reset" }}
                 </h3>
                 <div class="row">
                     <form action="/rps/rock" class="col">
@@ -110,10 +112,12 @@
             <!-- 컴퓨터 선택 -->
             <div class="col-md-6">
                 <h3 class="custom-text fw-bold">
-                    Computer{{ ": " if data.playerChoice }}{{ data.computerChoice if data.playerChoice }}
+                    Computer{{ ": " if data.playerChoice and
+                    data.playerChoice != "Reset" }}{{ data.computerChoice if data.playerChoice and
+                    data.playerChoice != "Reset" }}
                 </h3>
                 <div class="row">
-                    {% if data.playerChoice == "" %}
+                    {% if data.playerChoice in ("", "Reset") %}
                     <form class="col">
                         <button type="submit" class="btn btn-light btn-disabled"><img
                                 src="https://emojiisland.com/cdn/shop/products/Raised_Fist_Emoji_Icon_ios10_large.png?v=1571606092"
@@ -151,6 +155,7 @@
                 </div>
             </div>
         </div>
+
 
         <!-- 결과 및 전적 표시, 초기화(리셋) 버튼 -->
         <div class="my-4">

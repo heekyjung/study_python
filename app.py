@@ -47,24 +47,24 @@ def rps(playerChoice=""):
     if playerChoice == "Reset":
         db.session.query(Rps).delete()
         db.session.commit()
-
-    # 승패 판정
-    if playerChoice == computerChoice:
-        result_print = "Tie! 🙂"
-        result = "TIE"
-    elif (playerChoice == "Rock" and computerChoice == 'Scissors') or (playerChoice == "Paper" and computerChoice == 'Rock') or (playerChoice == "Scissors" and computerChoice == 'Paper'):
-        result_print = "You won!! 😆"
-        result = "WIN"
     else:
-        result_print = "You lost... 😭"
-        result = "LOSE"
+        # 승패 판정
+        if playerChoice == computerChoice:
+            result_print = "Tie! 🙂"
+            result = "TIE"
+        elif (playerChoice == "Rock" and computerChoice == 'Scissors') or (playerChoice == "Paper" and computerChoice == 'Rock') or (playerChoice == "Scissors" and computerChoice == 'Paper'):
+            result_print = "You won!! 😆"
+            result = "WIN"
+        else:
+            result_print = "You lost... 😭"
+            result = "LOSE"
 
-    # 데이터를 DB에 저장하기 (playerChoice가 있을 때만)
-    if playerChoice and playerChoice != "Reset":
-        round = Rps(player_choice=playerChoice,
-                    computer_choice=computerChoice, result=result)
-        db.session.add(round)
-        db.session.commit()
+        # 데이터를 DB에 저장하기 (playerChoice가 있을 때만)
+        if playerChoice and playerChoice != "Reset":
+            round = Rps(player_choice=playerChoice,
+                        computer_choice=computerChoice, result=result)
+            db.session.add(round)
+            db.session.commit()
 
     rps_db = Rps.query.all()
     win_count = Rps.query.filter_by(result="WIN").count()
