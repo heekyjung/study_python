@@ -9,4 +9,4 @@
 4. 가위바위보 게임 웹사이트
    - `app.py` (created on 2024.02.29)
    - `templates/rps.html` (created on 2024.02.29)
-   - <a href="https://heekyjung.pythonanywhere.com/rps/" target="_blank">웹사이트 구경하기</a>
+   - [웹사이트 구경하기](https://heekyjung.pythonanywhere.com/rps/)
