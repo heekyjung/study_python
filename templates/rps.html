@@ -152,23 +152,27 @@
             </div>
         </div>
 
-        <!-- 결과 표시 -->
-        <div class="my-5">
-
-        </div>
-
-        <!-- 전적 표시 -->
-        <div class="my-3">
+        <!-- 결과 및 전적 표시, 초기화(리셋) 버튼 -->
+        <div class="my-4">
             <div class="row">
                 <div class="col-md-6">
                     <h4 class="custom-text fw-bold">
-                        Score: {{ data.win_count }} Win{{"s" if data.win_count > 1}}, {{ data.tie_count }} Tie{{"s" if
+                        Score: {{ data.win_count }} Win{{"s" if data.win_count > 1}}, {{ data.tie_count }}
+                        Tie{{"s"
+                        if
                         data.tie_count >
                         1}}, {{ data.lose_count }} Loss{{"es" if data.lose_count > 1}}
                     </h4>
                 </div>
                 <div class="col-md-6">
-                    <h3 class="custom-text fw-bold">{{ data.result_print if data.playerChoice }}</h3>
+                    <div class="d-flex flex-row justify-content-between align-items-center">
+                        <h4 class="col custom-text fw-bold">{{ data.result_print if data.playerChoice and
+                            data.playerChoice != "Reset" }}</h4>
+                        <form action="/rps/reset">
+                            <button type="submit" class="btn fw-bold text-white"
+                                style="background-color:#E53C68;">RESET</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -43,6 +43,11 @@ def rps(playerChoice=""):
     result = ""
     result_print = ""
 
+    # DB 내 모든 row 삭제
+    if playerChoice == "Reset":
+        db.session.query(Rps).delete()
+        db.session.commit()
+
     # 승패 판정
     if playerChoice == computerChoice:
         result_print = "Tie! 🙂"
@@ -51,11 +56,11 @@ def rps(playerChoice=""):
         result_print = "You won!! 😆"
         result = "WIN"
     else:
-        result_print = "You lost... 🥲"
+        result_print = "You lost... 😭"
         result = "LOSE"
 
     # 데이터를 DB에 저장하기 (playerChoice가 있을 때만)
-    if playerChoice:
+    if playerChoice and playerChoice != "Reset":
         round = Rps(player_choice=playerChoice,
                     computer_choice=computerChoice, result=result)
         db.session.add(round)
